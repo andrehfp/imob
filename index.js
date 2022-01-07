@@ -1,5 +1,6 @@
 const express = require('express')
 const axios = require('axios')
+const nodemailer = require('nodemailer')
 
 const config = require('./config')
 const firebase = require('./db')
@@ -65,6 +66,30 @@ app.get('/add', (req, res) => {
         })
 })
 
+function sendMail(novos){
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: config.email_user,
+            pass: config.email_pass
+        }
+    });
+
+    var mailOptions = {
+        from: 'andrehfp@gmail.com'
+        , to: 'andrehfp@gmail.com'
+        , subject: 'Sending email using node.js'
+        , text: 'easy peazy'
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) console.log(error)
+        else console.log(info.response)
+
+    })
+
+}
+
 function addNew(novos){
     console.log('novos imóveis para cadastro: ', novos.length)
     db = firestore.collection('novos')
@@ -77,6 +102,13 @@ function addNew(novos){
     batch.commit()
 }
 
+app.get('/send', (req, res) => {
+
+    // Buscar imóiveis novos 
+    // Criar lista e enviar por email
+
+
+})
 
 app.get('/db', (req, res) => {
     var imoveis = []

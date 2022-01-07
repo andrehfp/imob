@@ -12,7 +12,9 @@ const {
     PROJECT_ID,
     STORAGE_BUCKET,
     MESSAGING_SENDER_ID,
-    APP_ID
+    APP_ID,
+    EMAIL_USER,
+    EMAIL_PASS
 } = process.env
     
 assert(PORT, 'PORT is required')
@@ -28,5 +30,7 @@ module.exports = {
         storageBucket:STORAGE_BUCKET,
         messagingSenderId:MESSAGING_SENDER_ID,
         appId:APP_ID
-    }
+    },
+    email_user: EMAIL_USER,
+    email_pass: EMAIL_PASS
 }
