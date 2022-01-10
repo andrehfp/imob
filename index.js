@@ -73,14 +73,14 @@ function sendMail(novos){
             user: config.email_user,
             pass: config.email_pass
         }
-    });
+    })
 
     var mailOptions = {
         from: 'andrehfp@gmail.com'
         , to: 'andrehfp@gmail.com'
         , subject: 'Sending email using node.js'
         , text: 'easy peazy'
-    };
+    }
 
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) console.log(error)
@@ -105,7 +105,7 @@ function addNew(novos){
 app.get('/send', (req, res) => {
 
     // Buscar imóiveis novos 
-    // Criar lista e enviar por email
+    // Criar lista e html para enviar por email
 
 
 })
