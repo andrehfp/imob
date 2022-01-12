@@ -75,11 +75,26 @@ function sendMail(novos){
         }
     })
 
+    let mail = ''
+
+    novos.forEach(imovel => {
+       mail+= `
+            <h3>${imovel.title}</h3>
+            <p>${imovel.neighbourhood}</p>
+            <p>${imovel.address}</p>
+            <p>${imovel.price}</p>
+            <p>${imovel.link}</p>
+            <p>${imovel.imob}</p>
+            <hr>
+        `
+    })
+
     var mailOptions = {
-        from: 'andrehfp@gmail.com'
+        from: 'andrehfprado@gmail.com'
         , to: 'andrehfp@gmail.com'
-        , subject: 'Sending email using node.js'
-        , text: 'easy peazy'
+        , subject: 'Seu novos imóveis para locação!🏡'
+        , html: mail
+
     }
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -102,10 +117,22 @@ function addNew(novos){
     batch.commit()
 }
 
-app.get('/send', (req, res) => {
+app.get('/send', async (req, res) => {
 
-    // Buscar imóiveis novos 
+    // Buscar imóveis novos 
+    var novos = []
+    const db = firestore.collection('novos')
+    const doc = await db.get()
+        .then((snapshot)=> {
+            snapshot.forEach(doc => {
+                novos.push(doc.data())
+            })
+        })
     // Criar lista e html para enviar por email
+    console.log('Novos: ',novos.length)
+    sendMail(novos)
+
+    res.json(novos)
 
 
 })
