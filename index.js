@@ -83,6 +83,7 @@ function sendMail(novos){
             <p>${imovel.neighbourhood}</p>
             <p>${imovel.address}</p>
             <p>${imovel.price}</p>
+            <p>${imovel.type}</p>
             <p>${imovel.link}</p>
             <p>${imovel.imob}</p>
             <hr>
@@ -91,7 +92,7 @@ function sendMail(novos){
 
     var mailOptions = {
         from: 'andrehfprado@gmail.com'
-        , to: 'andrehfp@gmail.com'
+        , to: 'andrehfp@gmail.com, renatacarolsilva@gmail.com'
         , subject: 'Seu novos imóveis para locação!🏡'
         , html: mail
 
@@ -130,7 +131,7 @@ app.get('/send', async (req, res) => {
         })
     // Criar lista e html para enviar por email
     console.log('Novos: ',novos.length)
-    sendMail(novos)
+    if (novos.length > 0) sendMail(novos)
 
     res.json(novos)
 
