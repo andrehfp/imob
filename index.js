@@ -134,8 +134,6 @@ app.get('/send', async (req, res) => {
     if (novos.length > 0) sendMail(novos)
 
     res.json(novos)
-
-
 })
 
 app.get('/db', (req, res) => {
