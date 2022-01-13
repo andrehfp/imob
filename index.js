@@ -92,7 +92,7 @@ function sendMail(novos){
 
     var mailOptions = {
         from: 'andrehfprado@gmail.com'
-        , to: 'andrehfp@gmail.com, renatacarolsilva@gmail.com'
+        , to: 'andrehfp@gmail.com'
         , subject: 'Seu novos imóveis para locação!🏡'
         , html: mail
 
